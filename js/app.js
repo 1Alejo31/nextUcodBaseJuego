@@ -10,9 +10,19 @@ $(document).ready(function(){
     }, 1175);   
 
     //Imagenes aleatoreas y llenar el cuadro
-
+  
     
+});
 
+//Declaracion de variables
+var bnewd=0;
+var maximo=0;
+var matriz=0;
+
+
+
+function llenarCuadro(){
+    
     for(var c = 1; c <8; c++){
         for(var j = 1; j < 7; j++ ){
             if($(".col-"+j).children("img:nth-child("+j+")").html()==null);
@@ -23,16 +33,7 @@ $(document).ready(function(){
             }
         }
     }
-    
-    
-});
-
-//Declaracion de variables
-var bnewd=0;
-var maximo=0;
-var matriz=0;
-
-
+}
 
 function eliminarhorver()
 {
@@ -218,3 +219,14 @@ function CrearDulces()
   contador=contador-1;
 }
     
+//Funcion para el intercambio de posicion de los dulces
+jQuery.fn.swap = function(b)
+{
+    b = jQuery(b)[0];
+    var a = this[0];
+    var t = a.parentNode.insertBefore(document.createTextNode(''), a);
+    b.parentNode.insertBefore(a, b);
+    t.parentNode.insertBefore(b, t);
+    t.parentNode.removeChild(t);
+    return this;
+};
