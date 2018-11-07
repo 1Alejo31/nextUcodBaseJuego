@@ -277,10 +277,6 @@ function desplazamiento()
   }
 }
 
-function callback()
-{
-    $( ".panel-score" ).animate({width:'100%'},4000);
-}
 
 //Funcion para Eliminar el total
 function Eliminartotal()
@@ -303,9 +299,9 @@ function tiempo_contra_reloj()
   {
     if(min==0)
     {
-      $( ".panel-tablero" ).hide("drop","slow",callback);
       $( ".time" ).hide();
-
+      $(".panel-tablero").toggle( "fold" );
+      $( ".panel-score" ).animate({width:'100%'},4000);
     }
     seg=59;
     min=min-1;
