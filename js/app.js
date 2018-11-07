@@ -300,8 +300,8 @@ function tiempo_contra_reloj()
     if(min==0)
     {
       $( ".time" ).hide();
-      $(".panel-tablero").toggle( "fold" );
-      $( ".panel-score" ).animate({width:'100%'},4000);
+      $(".panel-tablero").toggle("fold");
+      $( ".panel-score" ).animate({width:'100%'},750);
     }
     seg=59;
     min=min-1;
