@@ -1,4 +1,42 @@
 
+//Declaracion de variables
+var bnewd = 0;
+var maximo = 0;
+var matriz = 0;
+var i = 0;
+var score = 0;
+var mov = 0;
+var intervalo = 0;
+var eliminar = 0;
+var newdulces = 0;
+var tiempo = 0;
+var reloj  = 0;
+
+
+//Funcion para Inicar y reikniciar el juego
+
+$(".btn-reinicio").click(function(){
+    i=0;
+    score=0;
+    mov=0;
+    $(".panel-score").css("width","25%");
+    $(".panel-tablero").show();
+    $(".time").show();
+  
+    $("#score-text").html("0")
+    $("#movimientos-text").html("0")
+    $(this).html("REINICIAR")
+    clearInterval(intervalo);
+    clearInterval(eliminar);
+    clearInterval(newdulces);
+    clearInterval(tiempo);
+    llenarCuadro()
+    min=2; 
+    seg=0; 
+    Eliminartotal()
+    intervalo=setInterval(function(){desplazamiento()},600)
+    tiempo=setInterval(function(){tiempo_contra_reloj()},1000)
+  })
 
 $(document).ready(function(){
 //Cambio de color indefinidamente
@@ -15,13 +53,6 @@ $(document).ready(function(){
   
     
 });
-
-//Declaracion de variables
-var bnewd=0;
-var maximo=0;
-var matriz=0;
-
-
 
 function llenarCuadro(){
     
@@ -57,7 +88,7 @@ function eliminarhorver()
         CrearDulces()  //Funcion completar nuevos dulces
       },600)
   }
-  /*
+  
   if(rbh==1 || rbv==1)
   {
     $(".elemento").draggable({ disabled: true });
@@ -69,7 +100,7 @@ function eliminarhorver()
       $("#score-text").html(score)  //Aumentar puntuacion
     })
   }
-*/
+
   if(rbh==0 && rbv==0 && matriz==49)
   {
     $(".elemento").draggable({
@@ -101,14 +132,14 @@ function eliminarhorver()
       {
         dropped.swap($(droppedOn));
       }
-      /*
+      
       if(rbh==1 || rbv==1)
       {
         clearInterval(newdulces);
         clearInterval(eliminar);   //desactivar funcion desplazamiento()
         eliminar=setInterval(function(){eliminarhorver()},150)  //activar funcion eliminarhorver
       }
-      */
+      
     },
   });
 
@@ -226,7 +257,7 @@ function desplazamiento()
   var numero=0;
   var imagen=0;
 
-  $(".elemento").draggable({ disabled: true });
+  //$(".elemento").draggable({ disabled: true });
   if(i<8)
   {
     for(var j=1;j<8;j++)
@@ -258,4 +289,27 @@ function Eliminartotal()
   {
     $(".col-"+j).children("img").detach();
   }
+}
+
+
+//Funcion de tiempo 
+function tiempo_contra_reloj()
+{
+  if(seg!=0)
+  {
+    seg=seg-1;
+  }
+  if(seg==0)
+  {
+    if(min==0)
+    {
+      $( ".panel-tablero" ).hide("drop","slow",callback);
+      $( ".time" ).hide();
+
+    }
+    seg=59;
+    min=min-1;
+  }
+  $("#timer").html("0"+min+":"+seg)
+  
 }
