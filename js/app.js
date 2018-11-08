@@ -238,8 +238,8 @@ function CrearDulces()
     {
       if(contador>(maximo-lenres[j-1]))
       {
-        numero=Math.floor(Math.random() * 4) + 1 ;
-        imagen="image/"+numero+".png";
+        imagen=Math.floor(Math.random() * 4) + 1 ;
+        imagen="image/"+imagen+".png";
         $(".col-"+j).prepend("<img src="+imagen+" class='elemento'/>")
       }
     }
@@ -254,19 +254,20 @@ function CrearDulces()
 function desplazamiento()
 {
   i=i+1
-  var numero=0;
   var imagen=0;
+  var imagenes=0;
 
-  //$(".elemento").draggable({ disabled: true });
+  $(".elemento").draggable();
   if(i<8)
   {
+      
     for(var j=1;j<8;j++)
     {
       if($(".col-"+j).children("img:nth-child("+i+")").html()==null)
       {
-        numero=Math.floor(Math.random() * 4) + 1 ;
-        imagen="image/"+numero+".png";
-        $(".col-"+j).prepend("<img src="+imagen+" class='elemento'/>").css("justify-content","flex-start")
+        imagen=Math.floor(Math.random() * 4) + 1 ;
+        imagenes="image/"+imagen+".png";
+        $(".col-"+j).prepend("<img src="+imagenes+" class='elemento'/>").css("justify-content","flex-start")
       }
     }
   }
@@ -309,3 +310,16 @@ function tiempo_contra_reloj()
   $("#timer").html("0"+min+":"+seg)
   
 }
+
+//Funcion para el intercambio de dulces
+
+jQuery.fn.swap = function(b)
+{
+    b = jQuery(b)[0];
+    var a = this[0];
+    var t = a.parentNode.insertBefore(document.createTextNode(''), a);
+    b.parentNode.insertBefore(a, b);
+    t.parentNode.insertBefore(b, t);
+    t.parentNode.removeChild(t);
+    return this;
+};
