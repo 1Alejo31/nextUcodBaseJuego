@@ -11,6 +11,8 @@ var eliminar = 0;
 var newdulces = 0;
 var tiempo = 0;
 var reloj  = 0;
+var lencol=["","","","","","",""];
+var lenres=["","","","","","",""];
 
 
 //Funcion para Inicar y reikniciar el juego
@@ -34,6 +36,7 @@ $(".btn-reinicio").click(function(){
     min=2; 
     seg=0; 
     Eliminartotal()
+    eliminarhorver()
     intervalo=setInterval(function(){desplazamiento()},600)
     tiempo=setInterval(function(){tiempo_contra_reloj()},1000)
   })
@@ -206,11 +209,12 @@ function CrearDulces()
   {
     for(var j=0;j<7;j++)
     {
-      lenres[j]=(7-lencol[j]);
+     lenres[j]=(7-lencol[j]);
     }
     maximo=Math.max.apply(null,lenres);
     contador=maximo;
   }
+  
   if(maximo!=0)
   {
     if(bnewd==1)
@@ -244,6 +248,7 @@ function CrearDulces()
       }
     }
   }
+
   if(contador==1)
   {
       clearInterval(newdulces);
@@ -251,6 +256,7 @@ function CrearDulces()
   }
   contador=contador-1;
 }
+
 function desplazamiento()
 {
   i=i+1
@@ -323,3 +329,8 @@ jQuery.fn.swap = function(b)
     t.parentNode.removeChild(t);
     return this;
 };
+
+function callback()
+{
+    $( ".panel-score" ).animate({width:'100%'},4000);
+}
